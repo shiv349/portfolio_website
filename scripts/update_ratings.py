@@ -58,32 +58,49 @@ def find_number(obj, names):
             if n is not None:return n
     return None
 
+
 def codechef():
-    handle=USERS['codechef']; urls=[f'https://codechef-stats.tashif.codes/rating/{handle}',f'https://codechef-stats.tashif.codes/profile/{handle}']
-    errors=[]
-    for url in urls:
-        try:
-            r=requests.get(url,headers=HEADERS,timeout=TIMEOUT); r.raise_for_status(); body=r.json()
-            current=find_number(body,{'current','currentrating','rating','ratingcurrent','contestrating'})
-            highest=find_number(body,{'highest','highestrating','maxrating','peakrating','ratingmax'})
-            history=[]
-            def scan(x):
-                if isinstance(x,dict):
-                    for k,v in x.items():
-                        if k.lower().replace('_','') in {'history','ratinghistory','contesthistory'} and isinstance(v,list):
-                            for item in v:
-                                n=find_number(item,{'rating','newrating','current'})
-                                if n is not None:history.append(n)
-                        scan(v)
-                elif isinstance(x,list):
-                    for item in x:scan(item)
-            scan(body)
-            if history: highest=max([highest]+history) if highest is not None else max(history)
-            if current is not None or highest is not None:
-                return {'username':handle,'current':current,'highest':highest,'status':'ok','source':url}
-            errors.append(url+': no recognizable rating fields')
-        except Exception as e: errors.append(url+': '+str(e))
-    raise RuntimeError('CodeChef community API unavailable: '+'; '.join(errors))
+    handle = USERS['codechef']
+    url = f'https://codechef-stats.tashif.codes/rating/{handle}'
+
+    r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+    r.raise_for_status()
+    body = r.json()
+
+    if not body.get('success') or not isinstance(body.get('data'), dict):
+        raise RuntimeError('Invalid CodeChef API response')
+
+    data = body['data']
+
+    # Read the explicit summary fields, not the first
+    # rating encountered in the contest history.
+    current = num(data.get('current'))
+    highest = num(data.get('max'))
+
+    # Use history only as a fallback for the highest rating.
+    history = data.get('history', [])
+    history_ratings = [
+        n for item in history
+        if isinstance(item, dict)
+        if (n := num(item.get('rating'))) is not None
+    ]
+
+    if highest is None and history_ratings:
+        highest = max(history_ratings)
+
+    if current is None:
+        raise RuntimeError('Current CodeChef rating missing from API')
+
+    if highest is None:
+        highest = current
+
+    return {
+        'username': handle,
+        'current': current,
+        'highest': max(highest, current),
+        'status': 'ok',
+        'source': url
+    }
 
 FETCH={'leetcode':leetcode,'codeforces':codeforces,'codechef':codechef}
 def main():
