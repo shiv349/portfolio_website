@@ -1,0 +1,26 @@
+{
+  "updatedAt": null,
+  "ratings": {
+    "leetcode": {
+      "username": "Shiv_the_ultimate",
+      "current": null,
+      "highest": null,
+      "status": "unavailable",
+      "source": "LeetCode public GraphQL"
+    },
+    "codeforces": {
+      "username": "Shiv_the_ultimate",
+      "current": null,
+      "highest": null,
+      "status": "unavailable",
+      "source": "Official Codeforces API"
+    },
+    "codechef": {
+      "username": "good_magic_02",
+      "current": null,
+      "highest": null,
+      "status": "unavailable",
+      "source": "Community-maintained CodeChef Stats API"
+    }
+  }
+}
