@@ -1,26 +1,28 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-10-11T16:57:26+00:00",
   "ratings": {
     "leetcode": {
       "username": "Shiv_the_ultimate",
-      "current": null,
-      "highest": null,
-      "status": "unavailable",
+      "current": 1595.228167082134,
+      "highest": 1595.228,
+      "status": "ok",
       "source": "LeetCode public GraphQL"
     },
     "codeforces": {
       "username": "Shiv_the_ultimate",
-      "current": null,
-      "highest": null,
-      "status": "unavailable",
+      "current": 985.0,
+      "highest": 1077.0,
+      "rank": "newbie",
+      "maxRank": "newbie",
+      "status": "ok",
       "source": "Official Codeforces API"
     },
     "codechef": {
       "username": "good_magic_02",
-      "current": null,
-      "highest": null,
-      "status": "unavailable",
-      "source": "Community-maintained CodeChef Stats API"
+      "current": 1402.0,
+      "highest": 1402.0,
+      "status": "ok",
+      "source": "https://codechef-stats.tashif.codes/rating/good_magic_02"
     }
   }
 }
