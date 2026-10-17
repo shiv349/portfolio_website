@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T15:41:50+00:00",
+  "updatedAt": "2026-10-17T20:41:49+00:00",
   "ratings": {
     "leetcode": {
       "username": "Shiv_the_ultimate",
@@ -21,9 +21,8 @@
       "username": "good_magic_02",
       "current": 1402.0,
       "highest": 1402.0,
-      "status": "stale",
-      "source": "https://codechef-stats.tashif.codes/rating/good_magic_02",
-      "error": "429 Client Error: Too Many Requests for url: https://codechef-stats.tashif.codes/rating/good_magic_02"
+      "status": "ok",
+      "source": "https://codechef-stats.tashif.codes/rating/good_magic_02"
     }
   }
 }
